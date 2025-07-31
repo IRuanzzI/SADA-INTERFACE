@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/interface.css" />
+  <title>Gestão de não conformes</title>
+</head>
+
+<body>
+  <div class="main">
+    <div class="content">
+      <header class="title">NÃO CONFORMIDADES</header>
+    </div>
+
+    <div class="recurses">
+      <div class="search">
+        <input type="search" id="pesquisa" placeholder="Buscar por nome ou código..." />
+        <button onclick="buscar()">Buscar</button>
+        <button id="btnAdicionar">+</button>
+
+        <!-- Modal -->
+        <div class="modal-overlay" id="modal">
+          <div class="modal">
+            <div id="formAdicionar">
+              <input type="text" id="codigoInput" placeholder="Código" />
+              <input type="text" id="nomeInput" placeholder="Nome" />
+              <input type="text" id="dfInput" placeholder="Data de fundição">
+              <input type="text" id="descricaoInput" placeholder="Descrição" />
+              <input type="text" id="responsavelInput" placeholder="Responsável" />
+              <button id="btnEnviar" type="button">Adicionar</button>
+              <button id="btnCancelar" type="button">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <section class="menu">
+        <label for="id">Ordem</label>
+        <select id="id" onchange="filtrarTudo()">
+          <option value="todos">Todos</option>
+          <option value="recentes">Mais recentes</option>
+        </select>
+
+        <label for="status">Status</label>
+        <select id="status" onchange="filtrarTudo()">
+          <option value="todos">Todos</option>
+          <option value="segregado">Segregado</option>
+          <option value="analise">Em análise</option>
+          <option value="concluido">Concluído</option>
+        </select>
+      </section>
+
+      <!-- Tabela -->
+      <section>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Status</th>
+              <th>Código</th>
+              <th>Nome</th>
+              <th>Data de fundição</th>
+              <th>Descrição</th>
+              <th>Responsável</th>
+              <th>Data</th>
+              <th>Data-saída</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+          <tbody id="registros"></tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+
+  <script src="../api/script.js"></script>
+</body>
+
+</html>
